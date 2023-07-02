@@ -1,4 +1,6 @@
+import 'package:course/provider/counter_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,56 +31,47 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  // Set state untuk increment
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  //set State untuk decreement
-  void _decreementCounter() {
-    setState(() {
-      _counter--;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  onPressed: _decreementCounter,
-                  child: const Icon(Icons.close),
-                ),
-                const SizedBox(
-                  width: 8,
-                ),
-                ElevatedButton(
-                  onPressed: _incrementCounter,
-                  child: const Icon(Icons.add),
-                ),
-              ],
-            )
-          ],
+      body: ChangeNotifierProvider<CounterProvider>(
+        create: (context) => CounterProvider(),
+        child: Consumer<CounterProvider>(
+          builder: (context, model, child) {
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  const Text(
+                    'You have pushed the button this many times:',
+                  ),
+                  Text(
+                    '${model.counter}',
+                    style: Theme.of(context).textTheme.headline4,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                        onPressed: model.decreement,
+                        child: const Icon(Icons.close),
+                      ),
+                      const SizedBox(
+                        width: 8,
+                      ),
+                      ElevatedButton(
+                        onPressed: model.increement,
+                        child: const Icon(Icons.add),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            );
+          },
         ),
       ),
     );

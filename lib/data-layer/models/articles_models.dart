@@ -1,6 +1,6 @@
 import 'package:course/data-layer/models/source_models.dart';
 
-class Articles {
+class ArticlesModels {
   String? author;
   String? title;
   String? description;
@@ -10,7 +10,7 @@ class Articles {
   String? content;
   ArticleSource? source;
 
-  Articles({
+  ArticlesModels({
     this.author,
     this.title,
     this.description,
@@ -21,8 +21,8 @@ class Articles {
     this.source,
   });
 
-  factory Articles.fromJson(Map<String, dynamic> json) {
-    return Articles(
+  factory ArticlesModels.fromJson(Map<String, dynamic> json) {
+    return ArticlesModels(
       author: json['author'],
       content: json['content'],
       description: json['description'],

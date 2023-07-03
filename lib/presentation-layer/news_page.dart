@@ -6,6 +6,8 @@ class NewsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// [5.3] [Future Builder] untuk menggunakan services future get articles
+    /// yang akan mengembalikan data ke dalam builder ketika data sudah selesai di request5.3 future
     return FutureBuilder(
       future: ApiServices().getArticles(),
       builder: (_, data) {

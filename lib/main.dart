@@ -56,78 +56,25 @@ class MaterialHomePage extends StatelessWidget {
         title: const Text('Appbar '),
         actions: const [Icon(Icons.menu)],
       ),
-
-      /// Di body kita bisa memasukkan widget atau menu aplikasi yang akan kita buat
-      ///
-      /// Listview separated sama seperti builder dan dapat di sisipkan separator diantara item listview
-      body: ListView.separated(
-        itemCount: 10,
-        separatorBuilder: (_, index) {
-          return const Divider();
-        },
-        itemBuilder: (_, index) {
-          return GestureDetector(
-            onTap: () {
-              print(index);
-            },
-
-            /// Di gesture detector terdapat banyak property yang dapat digunakan untuk berbagai gesture
-            // onDoubleTap: ,
-            // onDoubleTapDown: ,
-            child: Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Container(
-                padding: const EdgeInsets.all(12),
-                child: Text('$index'),
-              ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () => print('elevated button'),
+              child: const Text('elevated button'),
             ),
-          );
-        },
+            TextButton(
+              onPressed: () => print('text button'),
+              child: Text('Text Button'),
+            ),
+            OutlinedButton(
+              onPressed: () => print('outlined button'),
+              child: Text('Outlined Button'),
+            )
+          ],
+        ),
       ),
-
-      /// Listview builder : listview dengan item dynamic. dapat di buat berdasarkan data yang dynamics
-      //     ListView.builder(
-      //   itemCount: 10,
-      //   itemBuilder: (_, index) {
-      //     return Card(
-      //       shape:
-      //           RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      //       child: Container(
-      //         padding: const EdgeInsets.all(12),
-      //         child: Text('$index'),
-      //       ),
-      //     );
-      //   },
-      // ),
-
-      /// Bottom Navigation bar biasa digunakan unttuk menu bar, bisa berisi home, account, dan lain lain.
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            label: 'Bottom 1',
-            icon: Icon(Icons.home),
-          ),
-          BottomNavigationBarItem(
-            label: 'Bottom 2',
-            icon: Icon(Icons.home),
-          ),
-          BottomNavigationBarItem(
-            label: 'Bottom 3',
-            icon: Icon(Icons.home),
-          ),
-        ],
-      ),
-
-      /// Floating action button biasa di gunakan untuk menu floating seperti add
-      /// atau digunakan sebagai menu alternatif
-      floatingActionButton: const FloatingActionButton(
-        onPressed: null,
-        child: Icon(Icons.add),
-      ),
-
-      /// Ada beberapa property lain lagi di dalam Scaffold, untuk itu teman" silahkan explore dan bereksperimen sendiri
     );
   }
 }

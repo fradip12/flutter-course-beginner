@@ -58,64 +58,40 @@ class MaterialHomePage extends StatelessWidget {
       ),
 
       /// Di body kita bisa memasukkan widget atau menu aplikasi yang akan kita buat
-      body: Column(
-        children: [
-          Expanded(
-            child: Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    width: double.infinity,
-                    color: Colors.amber,
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    width: double.infinity,
-                    color: Colors.amber[100],
-                  ),
-                ),
-              ],
+      body:
+
+          /// Listview separated sama seperti builder dan dapat di sisipkan separator diantara item listview
+          ListView.separated(
+        itemCount: 10,
+        separatorBuilder: (_, index) {
+          return const Divider();
+        },
+        itemBuilder: (_, index) {
+          return Card(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            child: Container(
+              padding: const EdgeInsets.all(12),
+              child: Text('$index'),
             ),
-          ),
-          Expanded(
-            child: Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    width: double.infinity,
-                    color: Colors.orange,
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    width: double.infinity,
-                    color: Colors.orange[100],
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    width: double.infinity,
-                    color: Colors.blue,
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    width: double.infinity,
-                    color: Colors.blue[100],
-                  ),
-                ),
-              ],
-            ),
-          )
-        ],
+          );
+        },
       ),
+
+      /// Listview builder : listview dengan item dynamic. dapat di buat berdasarkan data yang dynamics
+      //     ListView.builder(
+      //   itemCount: 10,
+      //   itemBuilder: (_, index) {
+      //     return Card(
+      //       shape:
+      //           RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      //       child: Container(
+      //         padding: const EdgeInsets.all(12),
+      //         child: Text('$index'),
+      //       ),
+      //     );
+      //   },
+      // ),
 
       /// Bottom Navigation bar biasa digunakan unttuk menu bar, bisa berisi home, account, dan lain lain.
       bottomNavigationBar: BottomNavigationBar(

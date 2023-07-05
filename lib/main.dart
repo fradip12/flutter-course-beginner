@@ -44,12 +44,50 @@ class MaterialHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      /// [AppBar]
+      /// beberapa komponen inti pada appbar yaitu :
+      /// [Leading] : icon sebelah kiri title, lebih banyak di pakai untuk icon back, untuk lebih mudah atau otomatis
+      /// dapat menggunakan property automatically leading : true
+      ///
+      /// [Actions] : icon yang berada di sebelah kanan title appbar, biasa digunakan untuk actions seperti menu
+      ///
       appBar: AppBar(
-        title: const Text('Material App Example'),
+        leading: const Icon(Icons.arrow_back_ios_new_sharp),
+        title: const Text('Appbar '),
+        actions: const [Icon(Icons.menu)],
       ),
+
+      /// Di body kita bisa memasukkan widget atau menu aplikasi yang akan kita buat
       body: const Center(
         child: Text('body widget'),
       ),
+
+      /// Bottom Navigation bar biasa digunakan unttuk menu bar, bisa berisi home, account, dan lain lain.
+      bottomNavigationBar: BottomNavigationBar(
+        items: const [
+          BottomNavigationBarItem(
+            label: 'Bottom 1',
+            icon: Icon(Icons.home),
+          ),
+          BottomNavigationBarItem(
+            label: 'Bottom 2',
+            icon: Icon(Icons.home),
+          ),
+          BottomNavigationBarItem(
+            label: 'Bottom 3',
+            icon: Icon(Icons.home),
+          ),
+        ],
+      ),
+
+      /// Floating action button biasa di gunakan untuk menu floating seperti add
+      /// atau digunakan sebagai menu alternatif
+      floatingActionButton: const FloatingActionButton(
+        onPressed: null,
+        child: Icon(Icons.add),
+      ),
+
+      /// Ada beberapa property lain lagi di dalam Scaffold, untuk itu teman" silahkan explore dan bereksperimen sendiri
     );
   }
 }

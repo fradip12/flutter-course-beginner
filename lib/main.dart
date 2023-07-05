@@ -58,8 +58,63 @@ class MaterialHomePage extends StatelessWidget {
       ),
 
       /// Di body kita bisa memasukkan widget atau menu aplikasi yang akan kita buat
-      body: const Center(
-        child: Text('body widget'),
+      body: Column(
+        children: [
+          Expanded(
+            child: Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    width: double.infinity,
+                    color: Colors.amber,
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    width: double.infinity,
+                    color: Colors.amber[100],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    width: double.infinity,
+                    color: Colors.orange,
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    width: double.infinity,
+                    color: Colors.orange[100],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    width: double.infinity,
+                    color: Colors.blue,
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    width: double.infinity,
+                    color: Colors.blue[100],
+                  ),
+                ),
+              ],
+            ),
+          )
+        ],
       ),
 
       /// Bottom Navigation bar biasa digunakan unttuk menu bar, bisa berisi home, account, dan lain lain.

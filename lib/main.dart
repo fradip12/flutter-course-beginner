@@ -70,6 +70,10 @@ class MaterialHomePage extends StatelessWidget {
             onTap: () {
               print(index);
             },
+
+            /// Di gesture detector terdapat banyak property yang dapat digunakan untuk berbagai gesture
+            // onDoubleTap: ,
+            // onDoubleTapDown: ,
             child: Card(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),

@@ -58,21 +58,26 @@ class MaterialHomePage extends StatelessWidget {
       ),
 
       /// Di body kita bisa memasukkan widget atau menu aplikasi yang akan kita buat
-      body:
-
-          /// Listview separated sama seperti builder dan dapat di sisipkan separator diantara item listview
-          ListView.separated(
+      ///
+      /// Listview separated sama seperti builder dan dapat di sisipkan separator diantara item listview
+      body: ListView.separated(
         itemCount: 10,
         separatorBuilder: (_, index) {
           return const Divider();
         },
         itemBuilder: (_, index) {
-          return Card(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-            child: Container(
-              padding: const EdgeInsets.all(12),
-              child: Text('$index'),
+          return GestureDetector(
+            onTap: () {
+              print(index);
+            },
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Container(
+                padding: const EdgeInsets.all(12),
+                child: Text('$index'),
+              ),
             ),
           );
         },

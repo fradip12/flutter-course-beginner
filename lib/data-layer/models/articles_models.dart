@@ -30,11 +30,16 @@ class ArticlesModels {
       url: json['url'],
       title: json['title'],
       urlToImage: json['urlToImage'],
-      source: json['source'] != null || json['source'] != ''
+      source: (json['source'] != null && json['source'] != '')
           ? ArticleSource.fromJson(
               json['source'],
             )
           : ArticleSource.empty(),
     );
   }
+
+  Map<String, dynamic> toJson() => {
+        'title': title,
+        'description': description,
+      };
 }

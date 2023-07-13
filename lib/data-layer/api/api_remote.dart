@@ -1,29 +1,46 @@
 import 'dart:convert';
 
+import 'package:course/data-layer/models/articles_models.dart';
 import 'package:course/data-layer/models/response_model.dart';
-import 'package:flutter/material.dart';
+import 'package:course/helper/database.dart';
+import 'package:data_connection_checker_nulls/data_connection_checker_nulls.dart';
 import 'package:http/http.dart' as http;
 
 const apiKey = '56dbfed2073d408db341a4d738adaae1';
 
 class ApiServices {
+  final DatabaseHelper db;
   final endpoint = 'https://newsapi.org/v2/everything?q=tesla&apiKey=$apiKey';
 
-  /// Future function berguna untuk pemanggilan data remote dari server agar dapat mengembalikan data sesuai dengan lama
-  /// request kembalian dari server
-  ///
-  /// [async] flag bertanda bahwa function kita merupakan function [future]
-  Future<ArticlesResponse?> getArticles() async {
-    final url = Uri.parse(endpoint);
-    // function await akan menunggu request sampai mengembalikan response dan code line selanjutnya akan dijalan ketika proses request telah selesai
-    final response = await http.get(url);
+  ApiServices(this.db);
 
-    // Jika request berhasil status code == 200
-    if (response.statusCode == 200) {
-      debugPrint(response.body);
-      return ArticlesResponse.fromJson(json.decode(response.body));
+  Future<ArticlesResponse?> getArticles() async {
+    final connected = await DataConnectionChecker().hasConnection;
+    print(connected);
+    if (connected) {
+      final url = Uri.parse(endpoint);
+      final response = await http.get(url);
+
+      if (response.statusCode == 200) {
+        final data = ArticlesResponse.fromJson(json.decode(response.body));
+        db.insertCache(articles: data);
+        return data;
+      } else {
+        return null;
+      }
     } else {
-      return null;
+      final response = await db.getCache();
+      final articles = response.map((e) => ArticlesModels.fromJson(e)).toList();
+      print(articles);
+      if (articles.isNotEmpty) {
+        final data = ArticlesResponse(
+          articles: articles,
+          totalResult: articles.length,
+        );
+        return data;
+      } else {
+        return null;
+      }
     }
   }
 }

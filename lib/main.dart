@@ -1,3 +1,4 @@
+import 'package:course/pages/card_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -74,12 +75,22 @@ class MaterialHomePage extends StatelessWidget {
               return const Divider();
             },
             itemBuilder: (_, index) {
-              return Card(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12)),
-                child: Container(
-                  padding: const EdgeInsets.all(12),
-                  child: Text('$index'),
+              return GestureDetector(
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CardPages(
+                      number: index,
+                    ),
+                  ),
+                ),
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12)),
+                  child: Container(
+                    padding: const EdgeInsets.all(12),
+                    child: Text('$index'),
+                  ),
                 ),
               );
             },
